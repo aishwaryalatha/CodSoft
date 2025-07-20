@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Friendly Calculator</title>
+  <style>
+    body {
+      background: #fdf6f0;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .calculator {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+
+    #display {
+      width: 100%;
+      height: 50px;
+      font-size: 22px;
+      padding: 5px;
+      text-align: right;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      background: #f4f4f4;
+      
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    button {
+      padding: 18px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background: #ffb74d;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #ff9800;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculator">
+    
+    <input type="text" id="display" disabled />
+
+    <div class="buttons">
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button>/</button>
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button>*</button>
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>-</button>
+      <button>0</button>
+      <button>C</button>
+      <button>=</button>
+      <button>+</button>
+    </div>
+  </div>
+
+  <script>
+    
+    const display = document.getElementById('display');
+
+    
+    const buttons = document.querySelectorAll('button');
+
+    
+    let input = '';
+
+   
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const value = btn.textContent;
+
+        if (value === 'C') {
+          input = '';
+        } else if (value === '=') {
+          try {
+            input = eval(input).toString(); 
+          } catch {
+            input = 'Error';
+          }
+        } else {
+          input += value;
+        }
+
+        display.value = input;
+      });
+    });
+  </script>
+
+</body>
+</html>
